@@ -46,7 +46,7 @@ To minimize network related performance impact, we setup virtual machines in the
 (AWS) US-WEST-1 region datacenter and evaluated application performance during cellular handovers 
 when TCP (control) or MPTCP (experimental) is in use. The following are utilized:
 
-- 2 virtual machines based on `ami-111222333 TODO`
+- 2 virtual machines based on `TODO: ami-111222333`
 - A wireguard VPN connection established between VMs
 - An Open Virtual Switch (OVS) tunnel setup between VMs inside the wireguard tunnel
 - 2 docker containers based on `silveryfu/celleval` that attach to the OVS tunnel
@@ -73,13 +73,13 @@ See Github README [here](https://github.com/cellbricks/emulation/tree/master/ho_
 To attain real performance metrics, we evaluated CellBricks on the T-Mobile 4G LTE network. The 
 setup is similar to the purely virtual machine experiments, but utilizes the following:
 
-- 2 virtual machines based on `ami-111222333 TODO`
+- 2 virtual machines based on `TODO: ami-111222333`
 - 2 laptops running Ubuntu 18.04, one [MPTCP enabled](https://multipath-tcp.org/pmwiki.php/Users/HowToInstallMPTCP?)
 - A wireguard VPN connection established between each VM and laptop (two VM laptop pairs).
 - An Open Virtual Switch (OVS) tunnel setup inside the wireguard tunnel
 - 4 docker containers based on `silveryfu/celleval`, one on every end of the OVS tunnels
 - 2 Cellular dongles, one attached to each laptop
-- Modified QCSuper on each laptop `TODO how was the handover triggers setup on the laptop again?`
+- Modified QCSuper on each laptop `TODO: how were the handover triggers setup?`
 
 The key difference in the physical setup is now the server-client pair is between an AWS VM and a laptop. 
 What remain the same are the tunnel and docker setups. We use QCSuper, an open source Qualcomm baseband 
@@ -88,22 +88,22 @@ similar fashion to the VM-VM approach.
 
 #### Results
 
-These are the results (of course to be updated).
+The following are application results from the real world experiments.
 
 
-Metric | Result
-:-- | :---
-<sub><strong>pc</strong></sub>            | <sub>program counter</sub>
-<sub><strong>rd</strong></sub>            | <sub>integer register destination</sub>
-<sub><strong>rsN</strong></sub>           | <sub>integer register source N</sub>
-<sub><strong>imm</strong></sub>           | <sub>immediate operand value</sub>
-<sub><strong>offset</strong></sub>        | <sub>immediate program counter relative offset</sub>
-<sub><strong>ux(reg)</strong></sub>       | <sub>unsigned XLEN-bit integer (32-bit on RV32, 64-bit on RV64)</sub>
-<sub><strong>sx(reg)</strong></sub>       | <sub>signed XLEN-bit integer (32-bit on RV32, 64-bit on RV64)</sub>
-<sub><strong>uN(reg)</strong></sub>       | <sub>zero extended N-bit integer register value</sub>
-<sub><strong>sN(reg)</strong></sub>       | <sub>sign extended N-bit integer register value</sub>
-<sub><strong>uN[reg + imm]</strong></sub> | <sub>unsigned N-bit memory reference</sub>
-<sub><strong>sN[reg + imm]</strong></sub> | <sub>signed N-bit memory reference</sub>
+| Application         |            | iPerf: Avg. Throughput |       | SIP: MOS      |       | Video: Avg. Quality Level |       | Web: Avg. Load Time |       |
+|---------------------|------------|------------------------|-------|---------------|-------|---------------------------|-------|---------------------|-------|
+| Unit                |            | mbps                   |       | 1-5/excellent |       | level                     |       | sec.                |       |
+| Route / Time of Run |            | D                      | N     | D             | N     | D                         | N     | D                   | N     |
+| Suburb              | MNO        | 1.25                   | 17.27 | 4.38          | 4.38  | 1.96                      | 4.91  | 4.78                | 1.81  |
+|                     | CellBricks | 1.20                   | 16.85 | 4.35          | 4.33  | 1.98                      | 4.91  | 4.96                | 1.76  |
+| Downtown            | MNO        | 1.14                   | 16.54 | 4.30          | 4.33  | 2.03                      | 4.94  | 5.12                | 1.89  |
+|                     | CellBricks | 1.11                   | 15.41 | 4.25          | 4.32  | 1.97                      | 4.94  | 5.22                | 1.89  |
+| Highway             | MNO        | 1.10                   | 11.38 | 4.34          | 4.34  | 1.95                      | 4.89  | 5.05                | 1.86  |
+|                     | CellBricks | 1.11                   | 12.42 | 4.27          | 4.30  | 1.97                      | 4.90  | 5.18                | 1.80  |
+| Overall             | MNO        | 1.16                   | 15.46 | 4.34          | 4.35  | 1.98                      | 4.91  | 5.00                | 1.86  |
+|                     | CellBricks | 1.14                   | 14.99 | 4.29          | 4.31  | 1.97                      | 4.92  | 5.13                | 1.83  |
+| % Change            | -          | -1.74                  | -3.09 | -1.16         | -0.92 | -0.51                     | +0.20 | +2.57               | -1.63 |
 
 
 

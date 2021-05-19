@@ -4,7 +4,7 @@ This site lays out the source code, step-by-step experimental procedure,
 and data for the CellBricks project. It servers as an artifact for the 
 ACM SIGCOMM 2021 Conference submission.
 
-The [homepage](/riscv)
+The [homepage](/)
 
 ### Sponsors
 

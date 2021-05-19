@@ -27,7 +27,7 @@ architecture is as follows: ... (can expand later to as much as we want)
 
 You do this and then that. [Link](/artifact1/subpage)
 
-### Experiment Phases
+### SAP Performance Evaluation *TODO: Zhihong*
 
 #### Magma Modification
 
@@ -38,7 +38,7 @@ computational overhead associated with the CellBricks SAP protocol.
 
 The evaluation of SAP on dedicated bTelcos to brokers in different geographic regions.
 
-### Application Performance on CellBricks
+### Application Performance Evaluation on CellBricks
 
 #### Virtual Machine Experiments
 

@@ -3,6 +3,8 @@
 This artifact lays out the source code, step-by-step experimental procedure, 
 and data for the CellBricks project, ACM SIGCOMM 2021 Conference submission.
 
+Go back to the CellBricks [homepage](/)
+
 #### Contents
 
 - Overview
@@ -24,8 +26,6 @@ from user management and billing.
 
 There are three entities in CellBricks, the user (UE), broker (B), and bTelco (T). The overall 
 architecture is as follows: ... (can expand later to as much as we want)
-
-You do this and then that. [Link](/artifact1/subpage)
 
 ### SAP Performance Evaluation *TODO: Zhihong*
 

@@ -12,7 +12,7 @@ ACM SIGCOMM 2021 Conference submission.
 
 #### Usage
 
-You do this and then that. [Link](/subpage)
+You do this and then that. [Link](/artifact1/subpage)
 
 #### Modified Magma Implementation
 

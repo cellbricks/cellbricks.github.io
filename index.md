@@ -3,18 +3,13 @@
 This site lays out the source code, step-by-step experimental procedure, 
 and data for the CellBricks project.
 
-#### Contents
+#### Overview
 
-- Artifact 1
-- Overview
+Tired of your cell carrier? Here is a solution.
 
 #### Artifact 1
 
 [Link](/artifact1)
-
-#### Overview
-
-Tired of your cell carrier? Here is a solution.
 
 
 ### Sponsors
@@ -24,4 +19,4 @@ Tired of your cell carrier? Here is a solution.
 - [Ericsson](https://www.ericsson.com/)
 - [National Science Foundation](https://www.nsf.gov/)
 
-This project is part of the [Netsys](https://netsys.cs.berkeley.edu) Labratory at UC Berkeley.
+This project is part of the [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

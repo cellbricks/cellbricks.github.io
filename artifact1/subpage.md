@@ -13,4 +13,4 @@ Artifact1 [homepage](/artifact1)
 - [Ericsson](https://www.ericsson.com/)
 - [National Science Foundation](https://www.nsf.gov/)
 
-This project is part of the [Netsys](https://netsys.cs.berkeley.edu) Labratory at UC Berkeley.
+This project is part of the [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

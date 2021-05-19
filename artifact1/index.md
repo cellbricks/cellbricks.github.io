@@ -8,10 +8,10 @@ and data for the CellBricks project, ACM SIGCOMM 2021 Conference submission.
 - Overview
 - Protocol Summary
 - Experiment Phases
-- - Magma Modification and Closed Circuit Experiments
-- - Application Performance
-- - - Virtual Machine Experiments
-- - - Real World Network Experiments
+    - Magma Modification and Closed Circuit Experiments
+    - Application Performance
+        - Virtual Machine Experiments
+        - Real World Network Experiments
 
 
 #### Overview

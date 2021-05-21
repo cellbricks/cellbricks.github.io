@@ -10,7 +10,7 @@ Go back to the CellBricks [homepage](/)
 - Overview
 - Protocol Summary
 - Experiment Phases
-    - Magma Modification and Closed Circuit Experiments
+    - Prototype Implementation and Evaluation
     - Application Performance
         - Virtual Machine Experiments
         - Real World Network Experiments
@@ -27,16 +27,35 @@ from user management and billing.
 There are three entities in CellBricks, the user (UE), broker (B), and bTelco (T). The overall 
 architecture is as follows: ... (can expand later to as much as we want)
 
-### SAP Performance Evaluation *TODO: Zhihong*
+### Prototype Performance Evaluation
+ 
+#### Prototype Testbed
 
-#### Magma Modification
+We prototype CellBricks using existing open-source cellular platforms. 
+The prototype includes four components: UE(s), the base station (eNodeB), the cellular core, and our broker implementation (brokerd). 
+Our testbed has two x86 machines: one acts as UE and the other as bTelco (eNodeB + EPC). We connect each machine to an SDR device ([USRP B205-mini](https://www.ettus.com/all-products/usrp-b205mini-i/)) which provides radio connectivity between the two machines. 
 
-We forked Magma, an open source cellular core, to evaluate the latency and 
-computational overhead associated with the CellBricks SAP protocol.
+On each machine, we run an extended [srsLTE](https://github.com/cellbricks/srsLTE) suite with the UE machine 
+runs the srsUE stack and the eNodeB machine runs the srsENB stack. 
+We extend srsLTE with the UE-side changes mentioned in the paper. 
+For the cellular core and broker, we run an extended [Magma](https://github.com/cellbricks/magma) implementation. 
+The two main components we extend are the access gateway (AGW) and the orchestrator (Orc8r). 
+We extend Magma’s AGW to support our secure attachment protocol: we define new NAS messages and handlers and implement 
+these as extensions to Magma’s AGW and srsUE. We implement the broker service (called brokerd) as part of Magma’s Orc8r 
+component deployed on AWS. Brokerd maintains a database of subscriber profiles (called SubscriberDB) and implements the 
+secure attachment protocol, processing authentication requests from bTelcos’.
 
-#### Closed Circuit Latency Measurements
+#### SAP Latency Measurements
 
-The evaluation of SAP on dedicated bTelcos to brokers in different geographic regions.
+We measure the end-to-end latency due to our attachment protocol, 
+measured from when the UE issues an attachment request to when attachment completes.
+we instrumented the relevant components of our prototype – Access Gateway (AGW), SubscriberDB, Brokerd, eNodeB and UE 
+– to measure the processing delay at each.
+
+In our experiments, the UE, eNodeB, and AGW are always located in our local testbed and we run experiments 
+with the subscriber database (SubscriberDB) and Brokerd either hosted on Amazon EC2 or our local testbed. 
+For each setup, we repeat the same attachment request using both unmodified Magma and Magma with our modifications to implement CellBricks. 
+We repeat each test 100 times and report average performance. 
 
 ### Application Performance Evaluation on CellBricks
 
@@ -74,7 +93,7 @@ To attain real performance metrics, we evaluated CellBricks on the T-Mobile 4G L
 setup is similar to the purely virtual machine experiments, but utilizes the following:
 
 - 2 virtual machines based on `TODO: ami-111222333`
-- 2 laptops running Ubuntu 18.04, one [MPTCP enabled](https://multipath-tcp.org/pmwiki.php/Users/HowToInstallMPTCP?)
+- 2 laptops running Ubuntu 18.04, one [MPTCP enabled](https://github.com/cellbricks/mptcp)
 - A wireguard VPN connection established between each VM and laptop (two VM laptop pairs).
 - An Open Virtual Switch (OVS) tunnel setup inside the wireguard tunnel
 - 4 docker containers based on `silveryfu/celleval`, one on every end of the OVS tunnels
@@ -82,8 +101,8 @@ setup is similar to the purely virtual machine experiments, but utilizes the fol
 - Modified QCSuper on each laptop `TODO: how were the handover triggers setup?`
 
 The key difference in the physical setup is now the server-client pair is between an AWS VM and a laptop. 
-What remain the same are the tunnel and docker setups. We use QCSuper, an open source Qualcomm baseband 
-logger to detect cellular handovers. Upon these triggers, we emulate a CellBricks SAP handover in a 
+What remain the same are the tunnel and docker setups. We use [QCSuper](https://github.com/cellbricks/emulation/tree/master/ho_proxy/QCSuper), 
+an open source Qualcomm baseband logger to detect cellular handovers. Upon these triggers, we emulate a CellBricks SAP handover in a 
 similar fashion to the VM-VM approach.
 
 #### Results

@@ -7,25 +7,10 @@ Go back to the CellBricks [homepage](/)
 
 #### Contents
 
-- Overview
-- Protocol Summary
-- Experiment Phases
-    - Prototype Implementation and Evaluation
-    - Application Performance
-        - Virtual Machine Experiments
-        - Real World Network Experiments
-
-
-#### Overview
-
-The CellBricks project re-examines the cellular provider landscape. Currently, a small number of 
-mobile network operators, or MNOs, dominate the cellular provider industry. Small players and new 
-entrants are challenged by the vast infrastructure costs needed to expand service. The CellBricks 
-protocol aims to significantly reduce the barrier of entry by decoupling physical infrastructure 
-from user management and billing.
-
-There are three entities in CellBricks, the user (UE), broker (B), and bTelco (T). The overall 
-architecture is as follows: ... (can expand later to as much as we want)
+- Prototype Implementation and Evaluation
+- Application Performance
+    - Virtual Machine Experiments
+    - Real World Network Experiments
 
 ### Prototype Performance Evaluation
  
@@ -63,12 +48,135 @@ We repeat each test 100 times and report average performance.
 
 To minimize network related performance impact, we setup virtual machines in the Amazon Web Services
 (AWS) US-WEST-1 region datacenter and evaluated application performance during cellular handovers 
-when TCP (control) or MPTCP (experimental) is in use. The following are utilized:
+when TCP (control) or MPTCP (experimental) is in use. The following prerequisites are needed:
 
-- 2 virtual machines based on `TODO: ami-111222333`
-- A wireguard VPN connection established between VMs
-- An Open Virtual Switch (OVS) tunnel setup between VMs inside the wireguard tunnel
-- 2 docker containers based on `silveryfu/celleval` that attach to the OVS tunnel
+- 2 AWS EC2 instances based on `ami-06b93cd6edfe1ee9f` (only available in US-WEST-1)
+
+Next, set up a VPN connect between the virtual machines. We will select, as should you, 
+one VM to be the client and the other to be the server (pick either one).
+
+On each virtual machine, clone the CellBricks emulation repo:
+```bash
+git clone https://github.com/cellbricks/emulation.git
+```
+
+One each virtual machine, generate a new public/private keypair for wireguard:
+```bash
+wg genkey | tee privatekey | wg pubkey > publickey
+```
+On each VM, modify or create `/etc/wireguard/wg0.conf`
+
+VM1 (Server):
+```
+[Interface]
+PrivateKey = [server's private key from previous step]
+ListenPort = 55107
+Address = 192.168.4.1
+
+[Peer]
+PublicKey = [client's public key from previous step]
+AllowedIPs = 192.168.4.2/32, 192.168.4.3/32
+PersistentKeepalive = 25
+```
+
+VM2 (Client):
+```
+[Interface]
+Address = 192.168.4.2
+PrivateKey = [client's private key from previous step]
+ListenPort = 51820
+
+[Peer]
+PublicKey = [server's public key from previous step]
+AllowedIPs = 192.168.4.1/32
+Endpoint = [HOST2]:55107
+PersistentKeepalive = 25
+```
+
+On the server, set the environmental variable from the client VM:
+```bash
+WG_REMOTE=192.168.4.2
+```
+
+Now, cd into the ho_proxy directory of the emulation repo we cloned earlier:
+```bash
+cd emulation/ho_proxy
+```
+
+And bring up the tunnel on both machines:
+```bash
+make tun
+```
+
+If you want to bring down the tunnel after running experiments, run:
+```bash
+make del-tun
+```
+
+At this point, both the WireGuard tunnel and OVS tunnels have been created. Now we will 
+start a docker container on each VM which will run the application we're testing:
+
+On the server VM:
+```bash
+sudo docker run --name uec --privileged -itd --mac-address 00:00:00:00:00:10 silveryfu/celleval
+```
+
+Client VM:
+```bash
+sudo docker run --name uec --privileged -itd --mac-address 00:00:00:00:00:20 silveryfu/celleval
+```
+
+In both containers, update:
+```bash
+sudo docker exec -it uec /bin/bash
+# and then run:
+sudo apt update; sudo apt upgrade
+```
+
+Also, both containers may have the same IP at the moment, so change the client IP to something 
+else on the subnet 172.17.0.0/16. For example, from inside the docker container:
+```
+ifconfig eth0 172.17.0.5 netmask 255.255.0.0 broadcast 0.0.0.0
+route add default gw 172.17.0.1
+```
+
+On the server, you can verify the container's IP. For the applications scripts, they assume a 
+server container UP of 172.17.0.2:
+```
+ifconfig eth0 172.17.0.2 netmask 255.255.0.0 broadcast 0.0.0.0
+route add default gw 172.17.0.1
+```
+
+One more thing before running applications, we want to tune the MPTCP variables to match TCP throughput. 
+Modify the tune-mptcp.sh script in the /emulation directory:
+* Identify cpus (`lscpu`) and change [TBD 1] in tune-mptcp.sh.
+* Identify irq: `dstat -i -N eth0` and change [TBD 2] in tune-mptcp.sh.
+
+Then run the script: `./ tune-mptcp.sh`
+
+Now we are ready to benchmark applications. From inside the containers, you may run applications that 
+communicate with the other container and can change the IP as desired to simulation a cell tower handover. There 
+are a number scripts in the `/emulation/ho_proxy` folder to automate this process. For example to run iPerf3, we could:
+
+On the server VM, login to the docker container and start the iPerf3 server
+```
+sudo docker exec -it uec /bin/bash
+iperf3 -S
+```
+
+Then on the client VM, cd into the `/emulation/ho_proxy` directory and run:
+```
+python3 sim.py iperf
+```
+
+This will run iPerf3 for 20 second runs, and perform 3 handovers each run, with varying handover latencies as defined in 
+`sim.py`. See [sim.py](https://github.com/cellbricks/emulation/blob/master/ho_proxy/sim.py) for more information.
+
+As the goal is to evaluate MPTCP vs TCP performance with cellular handover, we may turn MPTCP on or off with:
+```bash
+sudo sysctl -w net.mptcp.mptcp_enabled=0
+# 0 for off, 1 for on
+```
 
 The goal is for a networked application to run between two machines in an environment where we 
 may immediately cut the connection and reestablish after some delay associated with the SAP. In 
@@ -85,52 +193,47 @@ wait for the associated latency from the SAP, and then establish a new IP on the
 measure how the application responds to this handover when the VMs run TCP and compare to when running 
 MPTCP.
 
-See Github README [here](https://github.com/cellbricks/emulation/tree/master/ho_proxy) for step by step instructions.
+See Github README [here](https://github.com/cellbricks/emulation/tree/master/ho_proxy).
 
 #### Real World Cellular Network Experiments
 
 To attain real performance metrics, we evaluated CellBricks on the T-Mobile 4G LTE network. The 
-setup is similar to the purely virtual machine experiments, but utilizes the following:
+setup is similar to the purely virtual machine experiments, but the key difference in the physical 
+setup is now the server-client pair is between an AWS VM and a laptop. There are two VM-laptop pairs, 
+one for MPTCP and the other for TCP. We also  use [QCSuper](https://github.com/cellbricks/emulation/tree/master/ho_proxy/QCSuper), 
+an open source Qualcomm baseband logger to detect cellular handovers. Upon these triggers, we emulate 
+a CellBricks SAP handover in a similar fashion to the VM-VM approach.
 
-- 2 virtual machines based on `TODO: ami-111222333`
+- 2 virtual machines based on `ami-06b93cd6edfe1ee9f`
 - 2 laptops running Ubuntu 18.04, one [MPTCP enabled](https://github.com/cellbricks/mptcp)
-- A wireguard VPN connection established between each VM and laptop (two VM laptop pairs).
-- An Open Virtual Switch (OVS) tunnel setup inside the wireguard tunnel
-- 4 docker containers based on `silveryfu/celleval`, one on every end of the OVS tunnels
-- 2 Cellular dongles, one attached to each laptop
-- Modified QCSuper on each laptop `TODO: how were the handover triggers setup?`
+- 2 LTE to USB Adapters
 
-The key difference in the physical setup is now the server-client pair is between an AWS VM and a laptop. 
-What remain the same are the tunnel and docker setups. We use [QCSuper](https://github.com/cellbricks/emulation/tree/master/ho_proxy/QCSuper), 
-an open source Qualcomm baseband logger to detect cellular handovers. Upon these triggers, we emulate a CellBricks SAP handover in a 
-similar fashion to the VM-VM approach.
+Plug in an LTE dongle to each laptop with an active cellular sim (in our case T-Mobile). This will 
+provide the internet connection during the tests. Now, follow the above instructions in the "Virtual 
+Machine Experiments" section, except replace the client VM with the physical laptops. On one laptop, 
+disable MPTCP (nad make sure it is activated on the other).
+```bash
+sudo sysctl -w net.mptcp.mptcp_enabled=0
+# 0 for off, 1 for on
+```
 
-#### Results
+With the VPN and OVS tunnels created, docker containers ready, we may run applications in the containers 
+like before. However, we will trigger handovers based on real network handovers:
 
-The following are application results from the real world experiments.
+On both servers:
+```bash
+sudo docker exec -it uec /bin/bash
+iperf3 -S
+```
 
+On the client machines, cd into `/emulation/ho_proxy`:
+```bash
+# In one terminal window
+TODO: run application
+# In a second terminal window
+python3 proxy.py
+```
 
-| Application         |            | iPerf: Avg. Throughput |       | SIP: MOS      |       | Video: Avg. Quality Level |       | Web: Avg. Load Time |       |
-|---------------------|------------|------------------------|-------|---------------|-------|---------------------------|-------|---------------------|-------|
-| Unit                |            | mbps                   |       | 1-5/excellent |       | level                     |       | sec.                |       |
-| Route / Time of Run |            | D                      | N     | D             | N     | D                         | N     | D                   | N     |
-| Suburb              | MNO        | 1.25                   | 17.27 | 4.38          | 4.38  | 1.96                      | 4.91  | 4.78                | 1.81  |
-|                     | CellBricks | 1.20                   | 16.85 | 4.35          | 4.33  | 1.98                      | 4.91  | 4.96                | 1.76  |
-| Downtown            | MNO        | 1.14                   | 16.54 | 4.30          | 4.33  | 2.03                      | 4.94  | 5.12                | 1.89  |
-|                     | CellBricks | 1.11                   | 15.41 | 4.25          | 4.32  | 1.97                      | 4.94  | 5.22                | 1.89  |
-| Highway             | MNO        | 1.10                   | 11.38 | 4.34          | 4.34  | 1.95                      | 4.89  | 5.05                | 1.86  |
-|                     | CellBricks | 1.11                   | 12.42 | 4.27          | 4.30  | 1.97                      | 4.90  | 5.18                | 1.80  |
-| Overall             | MNO        | 1.16                   | 15.46 | 4.34          | 4.35  | 1.98                      | 4.91  | 5.00                | 1.86  |
-|                     | CellBricks | 1.14                   | 14.99 | 4.29          | 4.31  | 1.97                      | 4.92  | 5.13                | 1.83  |
-| % Change            | -          | -1.74                  | -3.09 | -1.16         | -0.92 | -0.51                     | +0.20 | +2.57               | -1.63 |
+Now you may walk / drive around town with the two laptops and emulate the CellBricks protocol!
 
-
-
-### Sponsors
-
-- [Intel](https://www.intel.com/)
-- [VMware](https://www.vmware.com/)
-- [Ericsson](https://www.ericsson.com/)
-- [National Science Foundation](https://www.nsf.gov/)
-
-This project is part of the [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.
+[NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

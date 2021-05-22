@@ -1,22 +1,17 @@
 ## CellBricks Documentation
 
-This site lays out the source code, step-by-step experimental procedure, 
+The CellBricks project re-examines the cellular provider landscape. Currently, a small number of 
+mobile network operators, or MNOs, dominate the cellular provider industry. Small players and new 
+entrants are challenged by the vast infrastructure costs needed to expand service. The CellBricks 
+protocol aims to significantly reduce the barrier of entry by decoupling physical infrastructure 
+from user management and billing.
+
+This site organizes the source code, step-by-step experimental procedure, 
 and data for the CellBricks project.
-
-#### Overview
-
-Tired of your cell carrier? Here is a solution.
 
 #### Artifact 1
 
 [Link](/artifact1)
 
 
-### Sponsors
-
-- [Intel](https://www.intel.com/)
-- [VMware](https://www.vmware.com/)
-- [Ericsson](https://www.ericsson.com/)
-- [National Science Foundation](https://www.nsf.gov/)
-
-This project is part of the [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.
+[NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

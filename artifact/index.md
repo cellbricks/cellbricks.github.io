@@ -9,6 +9,7 @@ and data for the CellBricks project, as part of the ACM SIGCOMM 2021 Conference 
 
 - Prototype Performance
 - Emulatiobn over the Internet
+- Traces and Results
 
 ### Prototype Performance
 
@@ -204,5 +205,12 @@ As the goal is to evaluate MPTCP vs TCP performance with cellular handover, we m
 sudo sysctl -w net.mptcp.mptcp_enabled=0
 # 0 for off, 1 for on
 ```
+
+### Traces and Results
+
+We share the traces collected in our experiments as well as the code to parse the traces into figures in this public Google drive [folder](https://drive.google.com/drive/folders/1t1kQEDJn8gRUAbwv_qhpAwqSdU7BnNWs?usp=sharing). Specifically, the `raw` folder contains emulation traces 
+and prototype performance results that we present in the paper. The `notebooks` folder contains scripts for parsing raw traces and results. 
+[wan-iperf-by-route.ipynb](https://drive.google.com/file/d/13L_dwDIr9zuOjOps1QeBt_ixFalss8mH/view?usp=sharing), for example, parses iperf traces 
+collected in our emulation experiements, and generates Figures 5, 6 and 10 of the paper. The `figs` folder contains all the figures in the paper.
 
 [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

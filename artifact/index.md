@@ -20,7 +20,11 @@ Go back to the CellBricks [homepage](/)
 
 We prototype CellBricks using existing open-source cellular platforms. 
 The prototype includes four components: UE(s), the base station (eNodeB), the cellular core, and our broker implementation (brokerd). 
-Our testbed has two x86 machines: one acts as UE and the other as bTelco (eNodeB + EPC). We connect each machine to an SDR device ([USRP B205-mini](https://www.ettus.com/all-products/usrp-b205mini-i/)) which provides radio connectivity between the two machines. 
+Our testbed has two x86 machines: one acts as UE and the other as bTelco (eNodeB + EPC). We connect each machine to an SDR device  which provides radio connectivity between the two machines.
+
+Equipment List
+- SDR: ([USRP B205-mini](https://www.ettus.com/all-products/usrp-b205mini-i/))
+- Antennas: VERT900 Antenna
 
 On each machine, we run an extended [srsLTE](https://github.com/cellbricks/srsLTE) suite with the UE machine 
 runs the srsUE stack and the eNodeB machine runs the srsENB stack. 
@@ -42,7 +46,7 @@ we instrumented the relevant components of our prototype – Access Gateway (AGW
 In our experiments, the UE, eNodeB, and AGW are always located in our local testbed and we run experiments 
 with the subscriber database (SubscriberDB) and Brokerd either hosted on Amazon EC2 or our local testbed. 
 For each setup, we repeat the same attachment request using both unmodified Magma and Magma with our modifications to implement CellBricks. 
-We repeat each test 100 times and report average performance. 
+We repeat each test 100 times and report average performance. Results are shown in Figure 4 of the paper.
 
 ### Application Performance Evaluation on CellBricks
 
@@ -183,22 +187,23 @@ sudo sysctl -w net.mptcp.mptcp_enabled=0
 When we simulate a handover in the CellBricks protocol, we drop the IP of the client docker container, 
 wait for the associated latency from the SAP, and then establish a new IP on the client container. We 
 measure how the application responds to this handover when the VMs run TCP and compare to when running 
-MPTCP.
+MPTCP. We measured performance impact using VM to VM experiments as shown in Figure 6 of the paper.
 
 See Github README [here](https://github.com/cellbricks/emulation/tree/master/ho_proxy).
 
 #### Real World Cellular Network Experiments
 
-To attain real performance metrics, we evaluated CellBricks on the T-Mobile 4G LTE network. The 
-setup is similar to the purely virtual machine experiments, but the key difference in the physical 
-setup is now the server-client pair is between an AWS VM and a laptop. There are two VM-laptop pairs, 
-one for MPTCP and the other for TCP. We also  use [QCSuper](https://github.com/cellbricks/emulation/tree/master/ho_proxy/QCSuper), 
+To attain real performance metrics, we evaluated CellBricks on the T-Mobile 4G LTE network. This corresponds 
+to the data in Table 1 and Figure 5 of the paper. The setup is similar to the purely virtual machine experiments, but the 
+key difference in the physical setup is now the server-client pair is between an AWS VM and a laptop. There 
+are two VM-laptop pairs, one for MPTCP and the other for TCP. We also  use [QCSuper](https://github.com/cellbricks/emulation/tree/master/ho_proxy/QCSuper), 
 an open source Qualcomm baseband logger to detect cellular handovers. Upon these triggers, we emulate 
 a CellBricks SAP handover in a similar fashion to the VM-VM approach.
 
 - 2 virtual machines based on `ami-06b93cd6edfe1ee9f`
 - 2 laptops running Ubuntu 18.04, one [MPTCP enabled](https://github.com/cellbricks/mptcp)
-- 2 LTE to USB Adapters
+- 2 LTE to USB Adapters: ZTE MF820B 4G LTE USB
+- 2 SIM cards: T-Mobile Prepaid SIM Card (Unlimited Talk, Text, and Data in USA for 30 Days)
 
 Plug in an LTE dongle to each laptop with an active cellular sim (in our case T-Mobile). This will 
 provide the internet connection during the tests. Now, follow the above instructions in the "Virtual 

@@ -33,8 +33,15 @@ For the cellular core and broker, we run an extended [Magma](https://github.com/
 The two main components we extend are the access gateway (AGW) and the orchestrator (Orc8r). 
 We extend Magma’s AGW to support our secure attachment protocol: we define new NAS messages and handlers and implement 
 these as extensions to Magma’s AGW and srsUE. We implement the broker service (called brokerd) as part of Magma’s Orc8r 
-component deployed on AWS. Brokerd maintains a database of subscriber profiles (called SubscriberDB) and implements the 
+component deployed on Amazon Web Services (AWS). Brokerd maintains a database of subscriber profiles (called SubscriberDB) and implements the 
 secure attachment protocol, processing authentication requests from bTelcos’.
+ 
+We support running the orchstrator in AWS by modifing the [dev_utils.py](https://github.com/cellbricks/magma/blob/master/orc8r/tools/fab/dev_utils.py) 
+to allow geteway registration towards a remote (non-local) orchestrator. With this change, setting up Magma's AGW and orchestrator is almost 
+the same as what is described in this [guide](https://magma.github.io/magma/docs/1.1.0/basics/quick_start_guide) with two differences.
+Firstly, run the orchestrator in an AWS instance, instead of locally. 
+Secondly, in dev_utils.py, change the value of `ORC8R_IP` to the public IP address of the AWS instance, and (optionally) the value of `CERT_DIR` to 
+a directory name where you would like your gateway certificates to reside in. 
 
 #### SAP Latency Measurements
 
@@ -52,8 +59,8 @@ We repeat each test 100 times and report average performance. Results are shown 
 
 #### Virtual Machine Experiments
 
-To minimize network related performance impact, we setup virtual machines in the Amazon Web Services
-(AWS) US-WEST-1 region datacenter and evaluated application performance during cellular handovers 
+To minimize network related performance impact, we setup virtual machines in the AWS 
+US-WEST-1 region datacenter and evaluated application performance during cellular handovers 
 when TCP (control) or MPTCP (experimental) is in use. The following prerequisites are needed:
 
 - 2 AWS EC2 instances based on `ami-06b93cd6edfe1ee9f` (only available in US-WEST-1)

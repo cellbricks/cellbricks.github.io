@@ -9,9 +9,9 @@ from user management and billing.
 This site organizes the source code, step-by-step experimental procedure, 
 and data for the CellBricks project.
 
-#### Artifact 1
+#### Artifact
 
-[Link](/artifact1)
+[Link](/artifact)
 
 
 [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

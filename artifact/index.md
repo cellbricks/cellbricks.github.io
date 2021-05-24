@@ -16,6 +16,8 @@ Go back to the CellBricks [homepage](/)
  
 #### Prototype Testbed
 
+![Testbed Diagram](/testbed.png)
+
 We prototype CellBricks using existing open-source cellular platforms. 
 The prototype includes four components: UE(s), the base station (eNodeB), the cellular core, and our broker implementation (brokerd). 
 Our testbed has two x86 machines: one acts as UE and the other as bTelco (eNodeB + EPC). We connect each machine to an SDR device ([USRP B205-mini](https://www.ettus.com/all-products/usrp-b205mini-i/)) which provides radio connectivity between the two machines. 
@@ -52,8 +54,8 @@ when TCP (control) or MPTCP (experimental) is in use. The following prerequisite
 
 - 2 AWS EC2 instances based on `ami-06b93cd6edfe1ee9f` (only available in US-WEST-1)
 
-Next, set up a VPN connect between the virtual machines. We will select, as should you, 
-one VM to be the client and the other to be the server (pick either one).
+One VM will serve as the server, and the other as the client (pick one to serve each role). 
+Next, set up a VPN connect between the virtual machines.
 
 On each virtual machine, clone the CellBricks emulation repo:
 ```bash
@@ -177,16 +179,6 @@ As the goal is to evaluate MPTCP vs TCP performance with cellular handover, we m
 sudo sysctl -w net.mptcp.mptcp_enabled=0
 # 0 for off, 1 for on
 ```
-
-The goal is for a networked application to run between two machines in an environment where we 
-may immediately cut the connection and reestablish after some delay associated with the SAP. In 
-the setup, the wireguard VPN connects the two VMs, and the protocol is highly resilient to handovers, 
-IP changes, and other interference in the network. This helps control for other factors that may 
-otherwise affect application performance, which becomes even more important in the real world 
-experiments. With a stable tunnel setup, a second, very lightweight tunnel in OVS creates a virtual  
-switch attached on both VMs. Finally, the two docker containers, one on each VM, are spun up and 
-attached to the OVS tunnel, meaning the two containers can communicate with each other. We may pick 
-one VM to be the server and the other to be the client.
 
 When we simulate a handover in the CellBricks protocol, we drop the IP of the client docker container, 
 wait for the associated latency from the SAP, and then establish a new IP on the client container. We 

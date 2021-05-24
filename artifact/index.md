@@ -23,8 +23,8 @@ The prototype includes four components: UE(s), the base station (eNodeB), the ce
 Our testbed has two x86 machines: one acts as UE and the other as bTelco (eNodeB + EPC). We connect each machine to an SDR device  which provides radio connectivity between the two machines.
 
 Equipment List
-- SDR: ([USRP B205-mini](https://www.ettus.com/all-products/usrp-b205mini-i/))
-- Antennas: VERT900 Antenna
+- SDR: [USRP B205-mini](https://www.ettus.com/all-products/usrp-b205mini-i/)
+- Antennas: [VERT900 Antenna](https://www.ettus.com/all-products/vert900/)
 
 On each machine, we run an extended [srsLTE](https://github.com/cellbricks/srsLTE) suite with the UE machine 
 runs the srsUE stack and the eNodeB machine runs the srsENB stack. 

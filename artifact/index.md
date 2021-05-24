@@ -161,11 +161,13 @@ One more thing before running applications, we want to tune the MPTCP variables 
 
 Then run the script: `./ tune-mptcp.sh`
 
+#### Running WAN Experiments
+
 Now we are ready to benchmark applications. From inside the containers, you may run applications that communicate with the other container and can change the IP as desired to simulation a cell tower handover. There are a number scripts in the `/emulation/ho_proxy` folder to automate this process.  See Github README [here](https://github.com/cellbricks/emulation/tree/master/ho_proxy).
 
 When we simulate a handover in the CellBricks protocol, we drop the IP of the client docker container, wait for the associated latency from the SAP, and then establish a new IP on the client container. We measure how the application responds to this handover when the VMs run TCP and compare to when running MPTCP. We measured performance impact using VM to VM experiments as shown in Figure 6 of the paper.
 
-With the VPN and OVS tunnels created, docker containers ready, we may run applications in the containers like before. However, we will trigger handovers based on real network handovers:
+With the VPN and OVS tunnels created, docker containers ready, we may run applications in the containers like before. However, we will trigger handovers based on real network handovers. For example, to benchmark iPerf3:
 
 On both servers:
 ```bash
@@ -176,7 +178,7 @@ iperf3 -S
 On the client machines, cd into `/emulation/ho_proxy`:
 ```bash
 # In one terminal window
-TODO: run application
+iperf3 -c 172.17.0.2 -i 0.1
 
 # In a second terminal window
 python3 proxy.py

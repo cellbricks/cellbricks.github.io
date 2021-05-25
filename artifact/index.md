@@ -30,6 +30,12 @@ The two main components we extend are the access gateway (AGW) and the orchestra
 We support running the orchstrator in AWS by modifing the [dev_utils.py](https://github.com/cellbricks/magma/blob/master/orc8r/tools/fab/dev_utils.py) 
 to allow geteway registration towards a remote (non-local) orchestrator. With this change, setting up Magma's AGW and orchestrator is almost the same as what is described in this [guide](https://magma.github.io/magma/docs/1.1.0/basics/quick_start_guide) with two differences. Firstly, run the orchestrator in an AWS instance, instead of locally. Secondly, in dev_utils.py, change the value of `ORC8R_IP` to the public IP address of the AWS instance, and (optionally) the value of `CERT_DIR` to a directory name where you would like your gateway certificates to reside in. 
 
+As for srsLTE, one could run `srsUE` and `srsENB` in the same way as unmodified srsLTE, as described [here](https://github.com/cellbricks/srsLTE/blob/master/README.md). For latency measurements, there are two changes we make on `srsUE`'s usage. 
+Firstly, we add two options: `nas.is_bt` for CellBricks attachment benchmarking and `nas.bm_s6a` for standard attachment 
+benchmarking. Secondly, to evaluate attachment latency, we add a keyboard input `d` to start a UE-initiated detachment. When either 
+`nas.is_bt` or `nas.bm_s6a` is on, `srsUE` will attach right after the detachment finishes, which allows us to repeatedly measure 
+UE's attachment latencies. 
+
 More information about the testbed setup can be found in the documents in each code repository.
 
 #### SAP Latency Measurements
@@ -37,7 +43,7 @@ More information about the testbed setup can be found in the documents in each c
 We measure the end-to-end latency due to our attachment protocol, measured from when the UE issues an attachment request to when attachment completes.
 we instrumented the relevant components of our prototype – Access Gateway (AGW), SubscriberDB, Brokerd, eNodeB and UE – to measure the processing delay at each.
 
-In our experiments, the UE, eNodeB, and AGW are always located in our local testbed and we run experiments with the subscriber database (SubscriberDB) and Brokerd either hosted on Amazon EC2 or our local testbed. For each setup, we repeat the same attachment request using both unmodified Magma and Magma with our modifications to implement CellBricks. 
+In our experiments, the UE, eNodeB, and AGW are always located in our local testbed and we run experiments with the subscriber database (SubscriberDB) and Brokerd either hosted on Amazon EC2 or our local testbed. For each setup, we repeat the same attachment request (with keyboard input `d`) using both unmodified Magma (`srsUE` with `nas.bm_s6a` on) and Magma with our modifications to implement CellBricks (`srsUE` with `nas.is_bt` on). 
 We repeat each test 100 times and report average performance. Results are shown in Figure 4 of the paper.
 
 ### Emulation over the Internet

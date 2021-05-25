@@ -221,7 +221,7 @@ sudo sysctl -w net.mptcp.mptcp_enabled=0
 
 We share the traces collected in our experiments as well as the code to parse the traces into figures in this public Google drive [folder](https://drive.google.com/drive/folders/1t1kQEDJn8gRUAbwv_qhpAwqSdU7BnNWs?usp=sharing). Specifically, the `raw` folder contains emulation traces 
 and prototype performance results that we present in the paper. The `notebooks` folder contains scripts for parsing raw traces and results. 
-[wan-iperf-by-route.ipynb](https://drive.google.com/file/d/13L_dwDIr9zuOjOps1QeBt_ixFalss8mH/view?usp=sharing), for example, parses iperf traces 
-collected in our emulation experiments, and generates Figures 5, 6 and 10 of the paper. The `figs` folder contains all the figures in the paper.
+For example, [wan-iperf-by-route.ipynb](https://drive.google.com/file/d/13L_dwDIr9zuOjOps1QeBt_ixFalss8mH/view?usp=sharing) parses iperf traces 
+collected in our emulation experiments and generates Figures 5, 6 and 10 of the paper; [prototype-latency.ipynb](https://drive.google.com/file/d/1Eeig7t3VEKxSIxHwX2tE7_wlK4-popDi/view?usp=sharing) parses attachment logs collected in our prototype experiments and generates Figure 4 of the paper. The `figs` folder contains all the figures in the paper.
 
 [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

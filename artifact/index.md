@@ -1,14 +1,13 @@
 ## SIGCOMM'21 Artifact
 
-This artifact lays out the source code, step-by-step experimental procedure, 
-and data for the CellBricks project, as part of the ACM SIGCOMM 2021 Conference submission.
+This artifact lays out the source code, step-by-step experimental procedure, and data for the CellBricks project, as part of the ACM SIGCOMM 2021 Conference submission.
 
 <!-- Go back to the CellBricks [homepage](/) -->
 
 #### Content
 
 - Prototype Performance
-- Emulatiobn over the Internet
+- Emulation over the Internet
 - Traces and Results
 
 ### Prototype Performance
@@ -23,12 +22,12 @@ Equipment List
 - SDR: [USRP B205-mini](https://www.ettus.com/all-products/usrp-b205mini-i/)
 - Antennas: [VERT900 Antenna](https://www.ettus.com/all-products/vert900/)
 
-On each machine, we run an extended [srsLTE](https://github.com/cellbricks/srsLTE) suite with the UE machine runs the srsUE stack and the eNodeB machine runs the srsENB stack. 
+On each machine, we run an extended [srsLTE](https://github.com/cellbricks/srsLTE) suite with the UE machine running the srsUE stack and the eNodeB machine running the srsENB stack. 
 We extend srsLTE with the UE-side changes mentioned in the paper. For the cellular core and broker, we run an extended [Magma](https://github.com/cellbricks/magma) implementation. 
 The two main components we extend are the access gateway (AGW) and the orchestrator (Orc8r). We extend Magma’s AGW to support our secure attachment protocol: we define new NAS messages and handlers and implement these as extensions to Magma’s AGW and srsUE. We implement the broker service (called brokerd) as part of Magma’s Orc8r component deployed on Amazon Web Services (AWS). Brokerd maintains a database of subscriber profiles (called SubscriberDB) and implements the secure attachment protocol, processing authentication requests from bTelcos’.
 
-We support running the orchstrator in AWS by modifing the [dev_utils.py](https://github.com/cellbricks/magma/blob/master/orc8r/tools/fab/dev_utils.py) 
-to allow geteway registration towards a remote (non-local) orchestrator. With this change, setting up Magma's AGW and orchestrator is almost the same as what is described in this [guide](https://magma.github.io/magma/docs/1.1.0/basics/quick_start_guide) with two differences. Firstly, run the orchestrator in an AWS instance, instead of locally. Secondly, in dev_utils.py, change the value of `ORC8R_IP` to the public IP address of the AWS instance, and (optionally) the value of `CERT_DIR` to a directory name where you would like your gateway certificates to reside in. 
+We support running the orchestrator in AWS by modifing the [dev_utils.py](https://github.com/cellbricks/magma/blob/master/orc8r/tools/fab/dev_utils.py) 
+to allow geteway registration towards a remote (non-local) orchestrator. With this change, setting up Magma's AGW and orchestrator is almost the same as what is described in this [guide](https://magma.github.io/magma/docs/1.1.0/basics/quick_start_guide) with two differences. Firstly, run the orchestrator in an AWS instance, instead of locally. Secondly, in dev_utils.py, change the value of `ORC8R_IP` to the public IP address of the AWS instance, and (optionally) the value of `CERT_DIR` to a directory name where you would like your gateway certificates to reside. 
 
 As for srsLTE, one could run `srsUE` and `srsENB` in the same way as unmodified srsLTE, as described [here](https://github.com/cellbricks/srsLTE/blob/master/README.md). For latency measurements, there are two changes we make on `srsUE`'s usage. 
 Firstly, we add two options: `nas.is_bt` for CellBricks attachment benchmarking and `nas.bm_s6a` for standard attachment 
@@ -41,7 +40,7 @@ More information about the testbed setup can be found in the documents in each c
 #### SAP Latency Measurements
 
 We measure the end-to-end latency due to our attachment protocol, measured from when the UE issues an attachment request to when attachment completes.
-we instrumented the relevant components of our prototype – Access Gateway (AGW), SubscriberDB, Brokerd, eNodeB and UE – to measure the processing delay at each.
+We instrumented the relevant components of our prototype – Access Gateway (AGW), SubscriberDB, Brokerd, eNodeB and UE – to measure the processing delay at each.
 
 In our experiments, the UE, eNodeB, and AGW are always located in our local testbed and we run experiments with the subscriber database (SubscriberDB) and Brokerd either hosted on Amazon EC2 or our local testbed. For each setup, we repeat the same attachment request (with keyboard input `d`) using both unmodified Magma (`srsUE` with `nas.bm_s6a` on) and Magma with our modifications to implement CellBricks (`srsUE` with `nas.is_bt` on). 
 We repeat each test 100 times and report average performance. Results are shown in Figure 4 of the paper.
@@ -59,7 +58,8 @@ a CellBricks SAP handover in a similar fashion to the VM-VM approach.
 - 2 SIM cards: T-Mobile Prepaid SIM Card (Unlimited Talk, Text, and Data in USA for 30 Days)
 
 Plug in an LTE dongle to each laptop with an active cellular sim (in our case T-Mobile). This will 
-provide the internet connection during the tests. Now, follow the above instructions in the "Virtual Machine Experiments" section, except replace the client VM with the physical laptops. On one laptop, disable MPTCP (nad make sure it is activated on the other).
+provide the internet connection during the tests. Now, follow the above instructions in the "Virtual Machine Experiments" section, except replace the client VM with the physical laptops. On one laptop, disable MPTCP (and make sure it is activated on the other).
+
 ```bash
 sudo sysctl -w net.mptcp.mptcp_enabled=0
 # 0 for off, 1 for on
@@ -167,9 +167,9 @@ One more thing before running applications, we want to tune the MPTCP variables 
 
 Then run the script: `./ tune-mptcp.sh`
 
-#### Running WAN Experiments
+#### Run WAN Experiments
 
-Now we are ready to benchmark applications. From inside the containers, you may run applications that communicate with the other container and can change the IP as desired to simulation a cell tower handover. There are a number scripts in the `/emulation/ho_proxy` folder to automate this process.  See Github README [here](https://github.com/cellbricks/emulation/tree/master/ho_proxy).
+Now we are ready to benchmark applications. From inside the containers, you may run applications that communicate with the other container and can change the IP as desired to simulate a cell tower handover. There are a number of scripts in the `/emulation/ho_proxy` folder to automate this process.  See Github README [here](https://github.com/cellbricks/emulation/tree/master/ho_proxy).
 
 When we simulate a handover in the CellBricks protocol, we drop the IP of the client docker container, wait for the associated latency from the SAP, and then establish a new IP on the client container. We measure how the application responds to this handover when the VMs run TCP and compare to when running MPTCP. We measured performance impact using VM to VM experiments as shown in Figure 6 of the paper.
 
@@ -219,6 +219,6 @@ sudo sysctl -w net.mptcp.mptcp_enabled=0
 We share the traces collected in our experiments as well as the code to parse the traces into figures in this public Google drive [folder](https://drive.google.com/drive/folders/1t1kQEDJn8gRUAbwv_qhpAwqSdU7BnNWs?usp=sharing). Specifically, the `raw` folder contains emulation traces 
 and prototype performance results that we present in the paper. The `notebooks` folder contains scripts for parsing raw traces and results. 
 [wan-iperf-by-route.ipynb](https://drive.google.com/file/d/13L_dwDIr9zuOjOps1QeBt_ixFalss8mH/view?usp=sharing), for example, parses iperf traces 
-collected in our emulation experiements, and generates Figures 5, 6 and 10 of the paper. The `figs` folder contains all the figures in the paper.
+collected in our emulation experiments, and generates Figures 5, 6 and 10 of the paper. The `figs` folder contains all the figures in the paper.
 
 [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

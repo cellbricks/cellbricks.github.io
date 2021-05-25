@@ -9,9 +9,9 @@ from user management and billing.
 This site organizes the source code, step-by-step experimental procedure, 
 and data for the CellBricks project.
 
-#### Artifact
+#### SIGCOMM 2021 Artifact
 
-[Link](/artifact)
+[Link](/artifact-sigcomm21)
 
 
 [NetSys](https://netsys.cs.berkeley.edu) Laboratory at UC Berkeley.

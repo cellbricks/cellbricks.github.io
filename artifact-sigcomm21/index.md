@@ -67,6 +67,9 @@ sudo sysctl -w net.mptcp.mptcp_enabled=0
 
 #### Configure the tunnels
 
+**Virtual Setup**
+![VM to VM Emulation Diagram](/emulation_dia.png)
+
 There are two hosts, the laptop (client) and cloud VM (server).
 
 On each host, clone the CellBricks emulation repo:
@@ -194,9 +197,6 @@ The above completes the setup for the emulation. More information about the Emul
 
 #### Study the impact of attachment latency
 Finally, to study the impact of attachment latency (Figure 6 of the paper), we set up virtual machines in the AWS US-WEST-1 region datacenter and evaluated application performance during cellular handovers when TCP (control) or MPTCP (experimental) is in use. The setup is similar to the emulation, except that we replace the client machine (the laptop) with a VM in the cloud. Both VMs are running in the same region (US-WEST-1).
-
-**Virtual Setup**
-![VM to VM Emulation Diagram](/emulation_dia.png)
 
 On the server, login to the docker container and start the iPerf3 server
 ```

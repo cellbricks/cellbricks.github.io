@@ -195,6 +195,10 @@ python3 proxy.py
 
 The above completes the setup for the emulation. More information about the Emulation setup and how to run each application are included in the code repositories.
 
+We pick three representative routes in the downtown, suburban, and highway areas of our geographic region (Berkeley), as shown in the map below. We repeatedly drive along each route with the above setup, each independently running the same application; and we run tests during the day and the midnight-to-dawn period.
+
+![Routes](/routes.png)
+
 #### Study the impact of attachment latency
 Finally, to study the impact of attachment latency (Figure 6 of the paper), we set up virtual machines in the AWS US-WEST-1 region datacenter and evaluated application performance during cellular handovers when TCP (control) or MPTCP (experimental) is in use. The setup is similar to the emulation, except that we replace the client machine (the laptop) with a VM in the cloud. Both VMs are running in the same region (US-WEST-1).
 

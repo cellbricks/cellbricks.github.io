@@ -1,434 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>CellBricks</title>
-      <!-- Bootstrap core CSS -->
-      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      <!-- Custom styles for this template -->
-      <link href="css/scrolling-nav.css" rel="stylesheet">
-      <!-- nice figures  -->
-      <link rel="stylesheet" href="css/font-awesome.css">
-   </head>
-   <body id="page-top">
-      <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-               <img class="img-fluid" width="5%" src="images/cellbricks_logo.png">
-               CellBricks
 
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title>CellBricks</title>
+   <!-- Bootstrap core CSS -->
+   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Custom styles for this template -->
+   <link href="css/scrolling-nav.css" rel="stylesheet">
+   <!-- nice figures  -->
+   <link rel="stylesheet" href="css/font-awesome.css">
+</head>
+
+<body id="page-top">
+   <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+         <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <img class="img-fluid" width="5%" src="images/cellbricks_logo.png">
+            CellBricks
+
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-               <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                     <a class="nav-link js-scroll-trigger" href="#about">About</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link js-scroll-trigger" href="#pubs">Publications</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link js-scroll-trigger" href="#code">Code</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link js-scroll-trigger" href="#team">Team</a>
-                  </li>
-               </ul>
-            </div>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="#about">About</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="#pubs">Publications</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="#code">Code</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+               </li>
+            </ul>
          </div>
-      </nav>
-      <header class="bg-light text-black">
-         <div class="container text-center">
-            <h1>CellBricks </h1>
-            <h2>A New Cellular Architecture</h2>
-            <p class="lead"><i>CellBricks is a democratized cellular ecosystem that decouples user management from network infrastructure.</i>
-            </p>
-         </div>
-      </header>
-      <section id="about" class="about-section">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-10 mx-auto">
-                  <p class="lead">Markets in which competition thrives are good for both consumers and innovation but, unfortunately, competition is not thriving in the increasingly important cellular market. We propose CellBricks, a novel cellular architecture that lowers the barrier to entry for new operators by enabling users to consume access on-demand from any available cellular operator — small or large, trusted or untrusted. CellBricks achieves this by moving support for mobility and user management (authentication and billing) out of the network and into end hosts. These changes, we believe, bring valuable benefits beyond enabling competition: they lead to a cellular infrastructure that is simpler and more efficient.</p>
-                  <p class="lead">We design, build, and evaluate CellBricks, showing that its benefits come at little-to-no cost in performance, with application performance between -1.95% to 3.1% of that achieved by current cellular infrastructure.</p>
-                  <div class="text-center">
-                     <p><img class="img-fluid" width="60%" src="images/cellbrick-arch.png"></p>
-                  </div>
-                  <p class="lead">The foundation underneath CellBricks is the secure attachment protocol (SAP), which enables quick mobility among decentralized bTelcos.</p>
-                  <div class="text-center">
-                     <p><img class="img-fluid" width="100%" src="images/combined_diagram-fixed.svg"></p>
-                  </div>
-                  <p class="lead">The following are the performance results associated with CellBricks running over the T-Mobile network compared to today's baseline performance.</p>
-                  <style type="text/css">
-                     .tg  {border-collapse:collapse;border-spacing:0;}
-                     .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-                       overflow:hidden;padding:10px 5px;word-break:normal;}
-                     .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-                       font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-                     .tg .tg-cjtp{background-color:#ecf4ff;border-color:inherit;text-align:left;vertical-align:top}
-                     .tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
-                     .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-                     </style>
-                     <table class="tg">
-                     <thead>
-                       <tr>
-                         <th class="tg-fymr" colspan="2">Application</th>
-                         <th class="tg-fymr" colspan="2">iPerf: Avg.<br>Throughput</th>
-                         <th class="tg-fymr" colspan="2">SIP: MOS</th>
-                         <th class="tg-fymr" colspan="2">Video: Avg.<br>Quality Level</th>
-                         <th class="tg-fymr" colspan="2">Web: Avg.<br>Load Time</th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                       <tr>
-                         <td class="tg-0pky" colspan="2">Unit</td>
-                         <td class="tg-0pky" colspan="2">mbps</td>
-                         <td class="tg-0pky" colspan="2">1-5/excellent</td>
-                         <td class="tg-0pky" colspan="2">level</td>
-                         <td class="tg-0pky" colspan="2">sec.</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-0pky" colspan="2">Route / Time of Run</td>
-                         <td class="tg-0pky">D</td>
-                         <td class="tg-0pky">N</td>
-                         <td class="tg-0pky">D</td>
-                         <td class="tg-0pky">N</td>
-                         <td class="tg-0pky">D</td>
-                         <td class="tg-0pky">N</td>
-                         <td class="tg-0pky">D</td>
-                         <td class="tg-0pky">N</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-0pky" rowspan="2">Suburb</td>
-                         <td class="tg-0pky">MNO</td>
-                         <td class="tg-0pky">1.25</td>
-                         <td class="tg-0pky">17.27</td>
-                         <td class="tg-0pky">4.38</td>
-                         <td class="tg-0pky">4.38</td>
-                         <td class="tg-0pky">1.96</td>
-                         <td class="tg-0pky">4.91</td>
-                         <td class="tg-0pky">4.78</td>
-                         <td class="tg-0pky">1.81</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-cjtp">CellBricks</td>
-                         <td class="tg-cjtp">1.20</td>
-                         <td class="tg-cjtp">16.85</td>
-                         <td class="tg-cjtp">4.35</td>
-                         <td class="tg-cjtp">4.33</td>
-                         <td class="tg-cjtp">1.98</td>
-                         <td class="tg-cjtp">4.91</td>
-                         <td class="tg-cjtp">4.96</td>
-                         <td class="tg-cjtp">1.76</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-0pky" rowspan="2">Downtown</td>
-                         <td class="tg-0pky">MNO</td>
-                         <td class="tg-0pky">1.14</td>
-                         <td class="tg-0pky">16.54</td>
-                         <td class="tg-0pky">4.30</td>
-                         <td class="tg-0pky">4.33</td>
-                         <td class="tg-0pky">2.03</td>
-                         <td class="tg-0pky">4.94</td>
-                         <td class="tg-0pky">5.12</td>
-                         <td class="tg-0pky">1.89</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-cjtp">CellBricks</td>
-                         <td class="tg-cjtp">1.11</td>
-                         <td class="tg-cjtp">15.41</td>
-                         <td class="tg-cjtp">4.25</td>
-                         <td class="tg-cjtp">4.32</td>
-                         <td class="tg-cjtp">1.97</td>
-                         <td class="tg-cjtp">4.94</td>
-                         <td class="tg-cjtp">5.22</td>
-                         <td class="tg-cjtp">1.89</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-0pky" rowspan="2">Highway</td>
-                         <td class="tg-0pky">MNO</td>
-                         <td class="tg-0pky">1.10</td>
-                         <td class="tg-0pky">11.38</td>
-                         <td class="tg-0pky">4.34</td>
-                         <td class="tg-0pky">4.34</td>
-                         <td class="tg-0pky">1.95</td>
-                         <td class="tg-0pky">4.89</td>
-                         <td class="tg-0pky">5.05</td>
-                         <td class="tg-0pky">1.86</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-cjtp">CellBricks</td>
-                         <td class="tg-cjtp">1.11</td>
-                         <td class="tg-cjtp">12.42</td>
-                         <td class="tg-cjtp">4.27</td>
-                         <td class="tg-cjtp">4.30</td>
-                         <td class="tg-cjtp">1.97</td>
-                         <td class="tg-cjtp">4.90</td>
-                         <td class="tg-cjtp">5.18</td>
-                         <td class="tg-cjtp">1.80</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-0pky" rowspan="2">Overall</td>
-                         <td class="tg-0pky">MNO</td>
-                         <td class="tg-0pky">1.16</td>
-                         <td class="tg-0pky">15.46</td>
-                         <td class="tg-0pky">4.34</td>
-                         <td class="tg-0pky">4.35</td>
-                         <td class="tg-0pky">1.98</td>
-                         <td class="tg-0pky">4.91</td>
-                         <td class="tg-0pky">5.00</td>
-                         <td class="tg-0pky">1.86</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-cjtp">CellBricks</td>
-                         <td class="tg-cjtp">1.14</td>
-                         <td class="tg-cjtp">14.99</td>
-                         <td class="tg-cjtp">4.29</td>
-                         <td class="tg-cjtp">4.31</td>
-                         <td class="tg-cjtp">1.97</td>
-                         <td class="tg-cjtp">4.92</td>
-                         <td class="tg-cjtp">5.13</td>
-                         <td class="tg-cjtp">1.83</td>
-                       </tr>
-                       <tr>
-                         <td class="tg-0pky">% Change</td>
-                         <td class="tg-0pky">-</td>
-                         <td class="tg-0pky">-1.74</td>
-                         <td class="tg-0pky">-3.09</td>
-                         <td class="tg-0pky">-1.16</td>
-                         <td class="tg-0pky">-0.92</td>
-                         <td class="tg-0pky">-0.51</td>
-                         <td class="tg-0pky">+0.20</td>
-                         <td class="tg-0pky">+2.57</td>
-                         <td class="tg-0pky">-1.63</td>
-                       </tr>
-                     </tbody>
-                     </table>
+      </div>
+   </nav>
+   <header class="bg-light text-black">
+      <div class="container text-center">
+         <h1>CellBricks </h1>
+         <h2>A New Cellular Architecture</h2>
+         <p class="lead"><i>CellBricks is a democratized cellular ecosystem that decouples user management from network
+               infrastructure.</i>
+         </p>
+      </div>
+   </header>
+   <section id="about" class="about-section">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-10 mx-auto">
+               <p class="lead">Markets in which competition thrives are good for both consumers and innovation but,
+                  unfortunately, competition is not thriving in the increasingly important cellular market. We propose
+                  CellBricks, a novel cellular architecture that lowers the barrier to entry for new operators by
+                  enabling users to consume access on-demand from any available cellular operator — small or large,
+                  trusted or untrusted. CellBricks achieves this by moving support for mobility and user management
+                  (authentication and billing) out of the network and into end hosts. These changes, we believe, bring
+                  valuable benefits beyond enabling competition: they lead to a cellular infrastructure that is simpler
+                  and more efficient.</p>
+               <p class="lead">We design, build, and evaluate CellBricks, showing that its benefits come at little-to-no
+                  cost in performance, with application performance between -1.95% to 3.1% of that achieved by current
+                  cellular infrastructure.</p>
+               <div class="text-center">
+                  <p><img class="img-fluid" width="60%" src="images/cellbrick-arch.png"></p>
                </div>
-            </div>
-         </div>
-      </section>
-      <section id="pubs" class="">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-10 mx-auto">
-                  <h2 class="section-title-tc">Publications</h2>
-                  <br>
-                  Zhihong Luo, Silvery Fu, Mark Theis, Shaddi Hasan, Sylvia Ratnasamy, Scott Shenker<br>
-                  <a class="publink" href="https://conferences.sigcomm.org/sigcomm/2021/"><b>
-                   Democratizing Cellular Access with CellBricks</b><br></a>
-                   Association for Computing Machinery's Special Interest Group on Data Communications (SIGCOMM’21).
-                  <br><br>
-                  
+               <p class="lead">The foundation underneath CellBricks is the secure attachment protocol (SAP), which
+                  enables quick mobility among decentralized bTelcos.</p>
+               <div class="text-center">
+                  <p><img class="img-fluid" width="100%" src="images/combined_diagram-fixed.svg"></p>
                </div>
+               <p class="lead">The following are the performance results associated with CellBricks running over the
+                  T-Mobile network compared to today's baseline performance.</p>
+               <style type="text/css">
+                  .tg {
+                     border-collapse: collapse;
+                     border-spacing: 0;
+                     margin-left: auto;
+                     margin-right: auto;
+                  }
+
+                  .tg td {
+                     border-color: black;
+                     border-style: solid;
+                     border-width: 1px;
+                     font-family: Arial, sans-serif;
+                     font-size: 14px;
+                     overflow: hidden;
+                     padding: 10px 5px;
+                     word-break: normal;
+                  }
+
+                  .tg th {
+                     border-color: black;
+                     border-style: solid;
+                     border-width: 1px;
+                     font-family: Arial, sans-serif;
+                     font-size: 14px;
+                     font-weight: normal;
+                     overflow: hidden;
+                     padding: 10px 5px;
+                     word-break: normal;
+                  }
+
+                  .tg .tg-cjtp {
+                     background-color: #ecf4ff;
+                     border-color: inherit;
+                     text-align: left;
+                     vertical-align: top
+                  }
+
+                  .tg .tg-fymr {
+                     border-color: inherit;
+                     font-weight: bold;
+                     text-align: left;
+                     vertical-align: top
+                  }
+
+                  .tg .tg-0pky {
+                     border-color: inherit;
+                     text-align: left;
+                     vertical-align: top
+                  }
+               </style>
+               <table class="tg">
+                  <thead>
+                     <tr>
+                        <th class="tg-fymr" colspan="2">Application</th>
+                        <th class="tg-fymr" colspan="2">iPerf: Avg.<br>Throughput</th>
+                        <th class="tg-fymr" colspan="2">SIP: MOS</th>
+                        <th class="tg-fymr" colspan="2">Video: Avg.<br>Quality Level</th>
+                        <th class="tg-fymr" colspan="2">Web: Avg.<br>Load Time</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td class="tg-0pky" colspan="2">Unit</td>
+                        <td class="tg-0pky" colspan="2">mbps</td>
+                        <td class="tg-0pky" colspan="2">1-5/excellent</td>
+                        <td class="tg-0pky" colspan="2">level</td>
+                        <td class="tg-0pky" colspan="2">sec.</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-0pky" colspan="2">Route / Time of Run</td>
+                        <td class="tg-0pky">D</td>
+                        <td class="tg-0pky">N</td>
+                        <td class="tg-0pky">D</td>
+                        <td class="tg-0pky">N</td>
+                        <td class="tg-0pky">D</td>
+                        <td class="tg-0pky">N</td>
+                        <td class="tg-0pky">D</td>
+                        <td class="tg-0pky">N</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-0pky" rowspan="2">Suburb</td>
+                        <td class="tg-0pky">MNO</td>
+                        <td class="tg-0pky">1.25</td>
+                        <td class="tg-0pky">17.27</td>
+                        <td class="tg-0pky">4.38</td>
+                        <td class="tg-0pky">4.38</td>
+                        <td class="tg-0pky">1.96</td>
+                        <td class="tg-0pky">4.91</td>
+                        <td class="tg-0pky">4.78</td>
+                        <td class="tg-0pky">1.81</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-cjtp">CellBricks</td>
+                        <td class="tg-cjtp">1.20</td>
+                        <td class="tg-cjtp">16.85</td>
+                        <td class="tg-cjtp">4.35</td>
+                        <td class="tg-cjtp">4.33</td>
+                        <td class="tg-cjtp">1.98</td>
+                        <td class="tg-cjtp">4.91</td>
+                        <td class="tg-cjtp">4.96</td>
+                        <td class="tg-cjtp">1.76</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-0pky" rowspan="2">Downtown</td>
+                        <td class="tg-0pky">MNO</td>
+                        <td class="tg-0pky">1.14</td>
+                        <td class="tg-0pky">16.54</td>
+                        <td class="tg-0pky">4.30</td>
+                        <td class="tg-0pky">4.33</td>
+                        <td class="tg-0pky">2.03</td>
+                        <td class="tg-0pky">4.94</td>
+                        <td class="tg-0pky">5.12</td>
+                        <td class="tg-0pky">1.89</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-cjtp">CellBricks</td>
+                        <td class="tg-cjtp">1.11</td>
+                        <td class="tg-cjtp">15.41</td>
+                        <td class="tg-cjtp">4.25</td>
+                        <td class="tg-cjtp">4.32</td>
+                        <td class="tg-cjtp">1.97</td>
+                        <td class="tg-cjtp">4.94</td>
+                        <td class="tg-cjtp">5.22</td>
+                        <td class="tg-cjtp">1.89</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-0pky" rowspan="2">Highway</td>
+                        <td class="tg-0pky">MNO</td>
+                        <td class="tg-0pky">1.10</td>
+                        <td class="tg-0pky">11.38</td>
+                        <td class="tg-0pky">4.34</td>
+                        <td class="tg-0pky">4.34</td>
+                        <td class="tg-0pky">1.95</td>
+                        <td class="tg-0pky">4.89</td>
+                        <td class="tg-0pky">5.05</td>
+                        <td class="tg-0pky">1.86</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-cjtp">CellBricks</td>
+                        <td class="tg-cjtp">1.11</td>
+                        <td class="tg-cjtp">12.42</td>
+                        <td class="tg-cjtp">4.27</td>
+                        <td class="tg-cjtp">4.30</td>
+                        <td class="tg-cjtp">1.97</td>
+                        <td class="tg-cjtp">4.90</td>
+                        <td class="tg-cjtp">5.18</td>
+                        <td class="tg-cjtp">1.80</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-0pky" rowspan="2">Overall</td>
+                        <td class="tg-0pky">MNO</td>
+                        <td class="tg-0pky">1.16</td>
+                        <td class="tg-0pky">15.46</td>
+                        <td class="tg-0pky">4.34</td>
+                        <td class="tg-0pky">4.35</td>
+                        <td class="tg-0pky">1.98</td>
+                        <td class="tg-0pky">4.91</td>
+                        <td class="tg-0pky">5.00</td>
+                        <td class="tg-0pky">1.86</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-cjtp">CellBricks</td>
+                        <td class="tg-cjtp">1.14</td>
+                        <td class="tg-cjtp">14.99</td>
+                        <td class="tg-cjtp">4.29</td>
+                        <td class="tg-cjtp">4.31</td>
+                        <td class="tg-cjtp">1.97</td>
+                        <td class="tg-cjtp">4.92</td>
+                        <td class="tg-cjtp">5.13</td>
+                        <td class="tg-cjtp">1.83</td>
+                     </tr>
+                     <tr>
+                        <td class="tg-0pky">% Change</td>
+                        <td class="tg-0pky">-</td>
+                        <td class="tg-0pky">-1.74</td>
+                        <td class="tg-0pky">-3.09</td>
+                        <td class="tg-0pky">-1.16</td>
+                        <td class="tg-0pky">-0.92</td>
+                        <td class="tg-0pky">-0.51</td>
+                        <td class="tg-0pky">+0.20</td>
+                        <td class="tg-0pky">+2.57</td>
+                        <td class="tg-0pky">-1.63</td>
+                     </tr>
+                  </tbody>
+               </table>
             </div>
          </div>
-      </section>
-      <section id="code" class="">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-10 mx-auto">
-                  <h2 class="section-title-tc">CellBricks Code</h2>
-                  <p class="lead"><a class="publink" href="https://github.com/cellbricks">GitHub repository</a></p>
-               </div>
+      </div>
+   </section>
+   <section id="pubs" class="">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-10 mx-auto">
+               <h2 class="section-title-tc">Publications</h2>
+               <br>
+               Zhihong Luo, Silvery Fu, Mark Theis, Shaddi Hasan, Sylvia Ratnasamy, Scott Shenker<br>
+               <a class="publink" href="https://conferences.sigcomm.org/sigcomm/2021/"><b>
+                     Democratizing Cellular Access with CellBricks</b><br></a>
+               Association for Computing Machinery's Special Interest Group on Data Communications (SIGCOMM’21).
+               <br><br>
+
             </div>
          </div>
-      </section>
-      <section id="team" class="team-section">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-10 mx-auto">
-                  <h2 class="section-title-tc">Team</h2>
-                  <div class="row">
-                     <!-- Zhihong -->
-                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                           <div class="mainflip">
-                              <div class="frontside">
-                                 <div class="card">
-                                    <div class="card-body text-center">
-                                       <p><img class=" img-fluid" src="images/zhihong_avatar.jpg" alt="card image"></p>
-                                       <h4 class="card-title">Zhihong Luo</h4>
-                                       <p class="card-text">Ph.D Student @ UCB</p>
-                                    </div>
+      </div>
+   </section>
+   <section id="code" class="">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-10 mx-auto">
+               <h2 class="section-title-tc">CellBricks Code</h2>
+               <p class="lead"><a class="publink" href="https://github.com/cellbricks">GitHub repository</a></p>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section id="team" class="team-section">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-10 mx-auto">
+               <h2 class="section-title-tc">Team</h2>
+               <div class="row">
+                  <!-- Zhihong -->
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                           <div class="frontside">
+                              <div class="card">
+                                 <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="images/zhihong_avatar.jpg" alt="card image"></p>
+                                    <h4 class="card-title">Zhihong Luo</h4>
+                                    <p class="card-text">Ph.D Student @ UCB</p>
                                  </div>
                               </div>
-                              <div class="backside">
-                                 <div class="card">
-                                    <div class="card-body text-center mt-3">
-                                       <h4 class="card-title">Zhihong Luo</h4>
-                                       <p class="card-text">Zhihong Luo is a Ph.D. student and research assistant at the NetSys Laboratory at UC Berkeley, USA.</p>
-                                       <ul class="list-inline">
-                                          <li class="list-inline-item">
-                                             <a class="social-icon text-xs-center" target="_blank" href="https://github.com/zhluo94/">
+                           </div>
+                           <div class="backside">
+                              <div class="card">
+                                 <div class="card-body text-center mt-3">
+                                    <h4 class="card-title">Zhihong Luo</h4>
+                                    <p class="card-text">Zhihong Luo is a Ph.D. student and research assistant at the
+                                       NetSys Laboratory at UC Berkeley, USA.</p>
+                                    <ul class="list-inline">
+                                       <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank"
+                                             href="https://github.com/zhluo94/">
                                              <i class="fa fa-github"></i>
-                                             </a>
-                                          </li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Silvery -->
-                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                           <div class="mainflip">
-                              <div class="frontside">
-                                 <div class="card">
-                                    <div class="card-body text-center">
-                                       <p><img class=" img-fluid" src="images/silvery_avatar.jpg" alt="card image"></p>
-                                       <h4 class="card-title">Silvery Fu</h4>
-                                       <p class="card-text">Ph.D. Student @ UCB</p>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="backside">
-                                 <div class="card">
-                                    <div class="card-body text-center mt-3">
-                                       <h4 class="card-title">Silvery Fu</h4>
-                                       <p class="card-text">Silvery Fu is a Ph.D. candidate and research assistant at the NetSys Laboratory at UC Berkeley, USA.</p>
-                                       <ul class="list-inline">
-                                          <li class="list-inline-item">
-                                             <a class="social-icon text-xs-center" target="_blank" href="https://github.com/silveryfu/">
-                                             <i class="fa fa-github"></i>
-                                             </a>
-                                          </li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Mark -->
-                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                           <div class="mainflip">
-                              <div class="frontside">
-                                 <div class="card">
-                                    <div class="card-body text-center">
-                                       <p><img class=" img-fluid" src="images/mark_avatar.png" alt="card image"></p>
-                                       <h4 class="card-title">Mark Theis</h4>
-                                       <p class="card-text">Undergraduate Researcher @ UCB</p>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="backside">
-                                 <div class="card">
-                                    <div class="card-body text-center mt-3">
-                                       <h4 class="card-title"><a href="https://mark.theis.site">Mark Theis</a></h4>
-                                       <p class="card-text">Mark Theis is a researcher at the NetSys Lab at UC Berkeley, USA.</p>
-                                       <ul class="list-inline">
-                                          <li class="list-inline-item">
-                                             <a class="social-icon text-xs-center" target="_blank" href="https://github.com/metheis/">
-                                             <i class="fa fa-github"></i>
-                                             </a>
-                                          </li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Shaddi -->
-                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                           <div class="mainflip">
-                              <div class="frontside">
-                                 <div class="card">
-                                    <div class="card-body text-center">
-                                       <p><img class=" img-fluid" src="images/shaddi_avatar.png" alt="card image"></p>
-                                       <h4 class="card-title">Shaddi Hasan</h4>
-                                       <p class="card-text"> Professor @ VT</p>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="backside">
-                                 <div class="card">
-                                    <div class="card-body text-center mt-3">
-                                       <h4 class="card-title"><a href="https://www.shaddih.com/">Shaddi Hasan</a></h4>
-                                       <p class="card-text">Shaddi Hasan is an incoming Associate Professor at Virginia Tech, USA.</p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Sylvia -->
-                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                           <div class="mainflip">
-                              <div class="frontside">
-                                 <div class="card">
-                                    <div class="card-body text-center">
-                                       <p><img class=" img-fluid" src="images/ratnasamy_avator.jpg" alt="card image"></p>
-                                       <h4 class="card-title">Sylvia Ratnasamy</h4>
-                                       <p class="card-text"> Professor @ UCB </p>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="backside">
-                                 <div class="card">
-                                    <div class="card-body text-center mt-3">
-                                       <h4 class="card-title"><a href="https://people.eecs.berkeley.edu/~sylvia/">Sylvia Ratnasamy</a></h4>
-                                       <p class="card-text">Sylvia Ratnasamy is a Professor at the NetSys Lab at UC Berkeley, USA.</p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- Scott -->
-                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                           <div class="mainflip">
-                              <div class="frontside">
-                                 <div class="card">
-                                    <div class="card-body text-center">
-                                       <p><img class=" img-fluid" src="images/shenker_avatar.jpg" alt="card image"></p>
-                                       <h4 class="card-title">Scott Shenker</h4>
-                                       <p class="card-text"> Professor @ UCB </p>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="backside">
-                                 <div class="card">
-                                    <div class="card-body text-center mt-3">
-                                       <h4 class="card-title"><a href="https://www.icsi.berkeley.edu/icsi/about/board/shenker">Scott Shenker</a></h4>
-                                       <p class="card-text">Scott Shenker is a Professor at the NetSys Lab at UC Berkeley, USA.</p>
-                                    </div>
+                                          </a>
+                                       </li>
+                                    </ul>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
+                  <!-- Silvery -->
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                           <div class="frontside">
+                              <div class="card">
+                                 <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="images/silvery_avatar.jpg" alt="card image"></p>
+                                    <h4 class="card-title">Silvery Fu</h4>
+                                    <p class="card-text">Ph.D. Student @ UCB</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="backside">
+                              <div class="card">
+                                 <div class="card-body text-center mt-3">
+                                    <h4 class="card-title">Silvery Fu</h4>
+                                    <p class="card-text">Silvery Fu is a Ph.D. candidate and research assistant at the
+                                       NetSys Laboratory at UC Berkeley, USA.</p>
+                                    <ul class="list-inline">
+                                       <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank"
+                                             href="https://github.com/silveryfu/">
+                                             <i class="fa fa-github"></i>
+                                          </a>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Mark -->
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                           <div class="frontside">
+                              <div class="card">
+                                 <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="images/mark_avatar.png" alt="card image"></p>
+                                    <h4 class="card-title">Mark Theis</h4>
+                                    <p class="card-text">Undergraduate Researcher @ UCB</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="backside">
+                              <div class="card">
+                                 <div class="card-body text-center mt-3">
+                                    <h4 class="card-title"><a href="https://mark.theis.site">Mark Theis</a></h4>
+                                    <p class="card-text">Mark Theis is a researcher at the NetSys Lab at UC Berkeley,
+                                       USA.</p>
+                                    <ul class="list-inline">
+                                       <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank"
+                                             href="https://github.com/metheis/">
+                                             <i class="fa fa-github"></i>
+                                          </a>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Shaddi -->
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                           <div class="frontside">
+                              <div class="card">
+                                 <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="images/shaddi_avatar.png" alt="card image"></p>
+                                    <h4 class="card-title">Shaddi Hasan</h4>
+                                    <p class="card-text"> Professor @ VT</p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="backside">
+                              <div class="card">
+                                 <div class="card-body text-center mt-3">
+                                    <h4 class="card-title"><a href="https://www.shaddih.com/">Shaddi Hasan</a></h4>
+                                    <p class="card-text">Shaddi Hasan is an incoming Associate Professor at Virginia
+                                       Tech, USA.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Sylvia -->
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                           <div class="frontside">
+                              <div class="card">
+                                 <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="images/ratnasamy_avator.jpg" alt="card image"></p>
+                                    <h4 class="card-title">Sylvia Ratnasamy</h4>
+                                    <p class="card-text"> Professor @ UCB </p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="backside">
+                              <div class="card">
+                                 <div class="card-body text-center mt-3">
+                                    <h4 class="card-title"><a href="https://people.eecs.berkeley.edu/~sylvia/">Sylvia
+                                          Ratnasamy</a></h4>
+                                    <p class="card-text">Sylvia Ratnasamy is a Professor at the NetSys Lab at UC
+                                       Berkeley, USA.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Scott -->
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                           <div class="frontside">
+                              <div class="card">
+                                 <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="images/shenker_avatar.jpg" alt="card image"></p>
+                                    <h4 class="card-title">Scott Shenker</h4>
+                                    <p class="card-text"> Professor @ UCB </p>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="backside">
+                              <div class="card">
+                                 <div class="card-body text-center mt-3">
+                                    <h4 class="card-title"><a
+                                          href="https://www.icsi.berkeley.edu/icsi/about/board/shenker">Scott
+                                          Shenker</a></h4>
+                                    <p class="card-text">Scott Shenker is a Professor at the NetSys Lab at UC Berkeley,
+                                       USA.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
-      </section>
-      <!-- Footer -->
-      <footer class="py-5 bg-dark">
-         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; NetSys Laboratory 2021</p>
-         </div>
-         <!-- /.container -->
-      </footer>
-      <!-- Bootstrap core JavaScript -->
-      <script src="vendor/jquery/jquery.min.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <!-- Plugin JavaScript -->
-      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-      <!-- Custom JavaScript for this theme -->
-      <script src="js/scrolling-nav.js"></script>
-   </body>
+      </div>
+   </section>
+   <!-- Footer -->
+   <footer class="py-5 bg-dark">
+      <div class="container">
+         <p class="m-0 text-center text-white">Copyright &copy; NetSys Laboratory 2021</p>
+      </div>
+      <!-- /.container -->
+   </footer>
+   <!-- Bootstrap core JavaScript -->
+   <script src="vendor/jquery/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- Plugin JavaScript -->
+   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+   <!-- Custom JavaScript for this theme -->
+   <script src="js/scrolling-nav.js"></script>
+</body>
+
 </html>

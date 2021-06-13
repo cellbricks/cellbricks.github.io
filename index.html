@@ -69,13 +69,28 @@
                <div class="text-center">
                   <p><img class="img-fluid" width="60%" src="images/cellbrick-arch.png"></p>
                </div>
-               <p class="lead">We design, build, and evaluate CellBricks, showing that its benefits come at little-to-no
-                  cost in performance, with application performance between -1.95% to 3.1% of that achieved by current
-                  cellular infrastructure.</p>
-               <!--                <p class="lead">The following is an overview of the attachment, mobility, and billing/QoS procedures in CellBricks depicting the key events and message exchanges happen over time.</p>
+               <h4>The Design</h4>
+               <p class="lead">To realize CellBricks we must address three key challenges:</p>
+               <ul>
+                <li> How do we ensure secure attachments in the absence of mutual trust between bTelcos and users/brokers? </li>
+                <li>  How do we minimize disruption to users' connections when switching between bTelcos? </li> 
+                <li> How do we ensure secure billing and QoS enforcement in the absence of mutual trust between bTelcos and users/brokers? </li>
+               </ul>
+               <p class="lead">These challenges are addressed in CellBricks with the following design components:</p>
+               <ul>
+               <li> <b>On-demand authentication and authorization.</b> A UE (U)
+               may request service from a bTelco (T1) when it comes within range of T1. The request initiates the attachment protocol (SAP) where the broker (B) can securely authenticate and authorize U to T1.</li>
+               <li> <b>Verifiable billing and QoS.</b> Periodically, U and T1 independently send verifiable and tamper-proof usage reports to B. These reports summarize both the bandwidth used and connection quality that U received. At some later time, T1 bills B based on the usage reports.</li>
+               <li> <b>Host-driven mobility</b>. U may come in the range of bTelco T2 and may wish to switch from T1 to T2. To do so, U simply
+               repeats the same authentication and authorization steps with
+               T2 as it did with T1 and then switches to T2. To handle this situation
+               without requiring coordination between bTelcos, we employ host-based mobility procedures (e.g., MPTCP) that does not disrupt users’ application-level sessions.</li>
+               </ul>
+               <p class="lead">Below is an overview of the attachment, billing/QoS, and mobility process in CellBricks. It depicts the key events and message exchanges happen during the SAP, MPTCP, and billing protocol.</p>
                <div class="text-center">
                   <p><img class="img-fluid" width="100%" src="images/combined_diagram-fixed.svg"></p>
-               </div> -->
+               </div>
+               <p class="lead">We've built and evaluated CellBricks with a prototype and emulation over real-world infrastructure, showing that its benefits come at little-to-no cost in performance, with application performance between -1.95% to 3.1% of that achieved by current cellular infrastructure. For more on the CellBricks' motivation, design, and results, check out our <a href="#"> SIGCOMM'21 paper</a>.</p>
                <!--                <p class="lead">The following are the performance results associated with CellBricks running over the
                   T-Mobile network compared to today's baseline performance.</p>
                <style type="text/css">
@@ -511,7 +526,7 @@
    <!-- Footer -->
    <footer class="py-5 bg-dark">
       <div class="container">
-         <p class="m-0 text-center text-white">Copyright &copy; NetSys Laboratory 2021</p>
+         <p class="m-0 text-center text-white">Copyright &copy; <a href="https://netsys.cs.berkeley.edu/">NetSys Lab</a> 2021</p>
       </div>
       <!-- /.container -->
    </footer>
